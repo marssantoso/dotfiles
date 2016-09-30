@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+lemonbuddy_terminate noconfirm
+
+temp=$(acpi -i | grep ing | awk '{print $1}')
+
+if [[ $temp == 'Battery' ]]
+then
+	lemonbuddy_wrapper top &
+	lemonbuddy_wrapper bottom &
+	twmnc -c "Lemon launched..."
+	echo "Lemon launched..."
+else
+	lemonbuddy_wrapper top --config=".config/lemonbuddy/config_ac" &
+	lemonbuddy_wrapper bottom --config=".config/lemonbuddy/config_ac" &
+	twmnc -c "Lemon launched, no battery detected"
+	echo "Lemon launched, no battery detected"
+fi
+

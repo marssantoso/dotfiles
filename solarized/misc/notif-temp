@@ -1,0 +1,3 @@
+#! /bin/bash
+
+temp=$(acpi -t | awk '{print $4}') && twmnc -t TEMP -c $temp°C

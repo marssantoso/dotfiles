@@ -1,0 +1,19 @@
+#! /bin/bash
+
+ac=$(acpi -a | awk '{print $3}')			#online/offline
+status=$(acpi -b | awk '{print $3}')		#charging/discharging
+bat=$(acpi -b | awk '{print $4}')			#percentage
+rem=$(acpi -b | awk '{print $5 " " $6}')	#remaining
+
+
+if [[ $ac == "off-line" ]]
+then
+	twmnc -t POWER -c "On battery, $bat $rem"
+else
+	if [[ $status == "Charging," || $status == "Unknown," ]]
+	then
+		twmnc -t POWER -c "Charging, $bat"
+	else
+		twmnc -t POWER -c "On AC (no battery)"
+	fi
+fi

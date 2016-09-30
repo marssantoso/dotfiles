@@ -1,0 +1,336 @@
+[bar/top]
+width = 100%
+height = 28
+clickareas = 35
+bottom = false
+
+padding_left = 3
+padding_right = 3
+
+background = #55002b36
+foreground = #bbfdf6e3
+
+spacing = 6
+;lineheight = 16
+
+font-0 = NotoSans-Regular:size=8;0
+font-1 = MaterialDesignIcons:size=12;0
+font-2 = MaterialIcons:size=10;0
+font-3 = FontAwesome:size=12;0
+font-4 = Unifont:size 14;0
+
+modules-left = menu
+modules-right = volume wifi battery date
+;modules-right = volume wifi date
+
+[bar/bottom]
+width = 100%
+height = 28
+bottom = true
+
+padding_right = 3
+
+background = ${bar/top.background}
+foreground = ${bar/top.foreground}
+
+spacing = 4
+
+font-0 = ${bar/top.font-0}
+font-1 = ${bar/top.font-1}
+font-2 = ${bar/top.font-2}
+
+modules-left = bspwm
+modules-center = title
+modules-right = cpu memory 
+
+[module/menu]
+type = custom/menu
+
+label-open = 
+label-close = 
+
+menu-0-0 = Run
+menu-0-0-foreground = #dde4a48a
+menu-0-0-exec = rofi -show run
+menu-0-1 = Apps
+menu-0-1-foreground = #dded9896
+menu-0-1-exec = menu_open-1
+menu-0-2 = Quit
+menu-0-2-foreground = #dde89ac0
+menu-0-2-exec = menu_open-7
+menu-0-3 = ReLemon
+menu-0-3-foreground = #ddb5b7e1
+menu-0-3-exec = ~/.config/panel/lemon
+
+menu-1-0 = Terminal
+menu-1-0-foreground = #dde4a48a
+menu-1-0-exec = termite
+menu-1-1 = File
+menu-1-1-foreground = #dded9896
+menu-1-1-exec = nemo
+menu-1-2 = Browser
+menu-1-2-foreground = #dde89ac0
+menu-1-2-exec = menu_open-2
+menu-1-3 = Editor
+menu-1-3-foreground = #ddb5b7e1
+menu-1-3-exec = menu_open-3
+menu-1-4 = Media
+menu-1-4-foreground = #dd92c4e8
+menu-1-4-exec = menu_open-4
+menu-1-5 = Graphics
+menu-1-5-foreground = #dd94cfcb
+menu-1-5-exec = menu_open-5
+menu-1-6 = Game
+menu-1-6-foreground = #ddc1cb7f
+menu-1-6-exec = menu_open-6
+menu-1-7 = 
+menu-1-7-foreground = #ddfdf6e3
+menu-1-7-exec = menu_open-0
+
+menu-2-0 = Chromium
+menu-2-0-foreground = #ddfdf6e3
+menu-2-0-exec = chromium &
+menu-2-1 = Opera
+menu-2-1-foreground = #ddfdf6e3
+menu-2-1-exec = opera-developer &
+menu-2-2 = QuteBrowser
+menu-2-2-foreground = #ddfdf6e3
+menu-2-2-exec = qutebrowser &
+menu-2-3 = 
+menu-2-3-foreground = #ddfdf6e3
+menu-2-3-exec = menu_open-1
+
+menu-3-0 = Sublime
+menu-3-0-foreground = #ddfdf6e3
+menu-3-0-exec = subl3
+menu-3-1 = LibreOffice
+menu-3-1-foreground = #ddfdf6e3
+menu-3-1-exec = libreoffice &
+menu-3-2 = 
+menu-3-2-foreground = #ddfdf6e3
+menu-3-2-exec = menu_open-1
+
+menu-4-0 = Spotify
+menu-4-0-foreground = #ddfdf6e3
+menu-4-0-exec = spotify &
+menu-4-1 = 
+menu-4-1-foreground = #ddfdf6e3
+menu-4-1-exec = menu_open-1
+
+menu-5-0 = GIMP
+menu-5-0-foreground = #ddfdf6e3
+menu-5-0-exec = gimp &
+menu-5-1 = Inkscape
+menu-5-1-foreground = #ddfdf6e3
+menu-5-1-exec = inkscape &
+menu-5-2 = 
+menu-5-2-foreground = #ddfdf6e3
+menu-5-2-exec = menu_open-1
+
+menu-6-0 = Steam
+menu-6-0-foreground = #ddfdf6e3
+menu-6-0-exec = steam &
+menu-6-1 = 
+menu-6-1-foreground = #ddfdf6e3
+menu-6-1-exec = menu_open-1
+
+menu-7-0 = Log Out
+menu-7-0-foreground = #dde4a48a
+menu-7-0-exec = bspc quit -1
+menu-7-1 = Suspend
+menu-7-1-foreground = #dded9896
+menu-7-1-exec = systemctl suspend
+menu-7-2 = Hibernate
+menu-7-2-foreground = #dde89ac0
+menu-7-2-exec = systemctl hibernate
+menu-7-3 = Power Off
+menu-7-3-foreground = #ddb5b7e1
+menu-7-3-exec = menu_open-8
+menu-7-4 = Reboot
+menu-7-4-foreground = #dd92c4e8
+menu-7-4-exec = menu_open-9
+menu-7-5 = 
+menu-7-5-foreground = #ddfdf6e3
+menu-7-5-exec = menu_open-0
+
+menu-8-0 = Power Off
+menu-8-0-foreground = #ddd9c37f
+menu-8-0-exec = systemctl poweroff
+menu-8-1 = 
+menu-8-1-foreground = #ddfdf6e3
+menu-8-1-exec = menu_open-7
+
+menu-9-0 = Reboot
+menu-9-0-foreground = #ddd9c37f
+menu-9-0-exec = systemctl reboot
+menu-9-1 = 
+menu-9-1-foreground = #ddfdf6e3
+menu-9-1-exec = menu_open-7
+
+[module/date]
+type = internal/date
+date =   %%{F#ddc1cb7f}%Y-%m-%d%%{F-}  %%{F#ddfdf6e3}%H:%M%%{F-}
+date_detailed =   %%{F#dd94cfcb}%A, %%{F#ddc1cb7f}%d %B %Y  %%{F#ddfdf6e3}%H:%M:%S%%{F-}
+
+[module/battery]
+type = internal/battery
+adapter = AC
+full_at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-9 = 
+ramp-capacity-8 = 
+ramp-capacity-7 = 
+ramp-capacity-6 = 
+ramp-capacity-5 = 
+ramp-capacity-4 = 
+ramp-capacity-3 = 
+ramp-capacity-2 = 
+ramp-capacity-1 = 
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1-foreground = #ffa900
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-framerate_ms = 750
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+
+format-connected = <label-connected>
+label-connected =  %essid%
+label-disconnected =  not connected
+label-disconnected-foreground = #66
+
+[module/volume]
+type = internal/volume
+speaker_mixer = Speaker
+headphone_mixer = Headphone
+headphone_control_numid = 9
+
+format-volume = <ramp-volume> <label-volume> <bar-volume>
+label-volume = %percentage%
+
+bar-volume-width = 10
+bar-volume-foreground = #aaff77
+bar-volume-indicator = ▓
+bar-volume-indicator-font = 6
+bar-volume-fill = ▒
+bar-volume-fill-font = 6
+bar-volume-fill-font-style = bold
+bar-volume-empty = ░
+bar-volume-empty-font = 6
+
+format-muted = <label-muted>
+;label-muted =  muted
+label-muted =    muted   ░░░░░░░░░░
+label-muted-foreground = #66
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label =  %percentage_used%
+
+bar-used-width = 10
+bar-used-foreground-0 = #c1cb7f
+bar-used-foreground-1 = #d9c37f
+bar-used-foreground-2 = #e4a48a
+bar-used-foreground-3 = #ed9896
+bar-used-indicator = ■
+bar-used-indicator-font = 2
+bar-used-indicator-foreground = #55fdf6e3
+bar-used-fill = ■
+bar-used-fill-font = 2
+bar-used-empty = □
+bar-used-empty-font = 2
+bar-used-empty-foreground = #99586e75
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <bar-load>
+label =  %percentage%
+
+bar-load-width = 10
+bar-load-foreground-0 = #c1cb7f
+bar-load-foreground-1 = #d9c37f
+bar-load-foreground-2 = #e4a48a
+bar-load-foreground-3 = #ed9896
+bar-load-indicator = ■
+bar-load-indicator-font = 0
+bar-load-indicator-foreground = #55fdf6e3
+bar-load-fill = ■
+bar-load-fill-font = 0
+bar-load-empty = □
+bar-load-empty-font = 0
+bar-load-empty-foreground = #99586e75
+
+[module/bspwm]
+type = internal/bspwm
+
+format = <label-state>
+
+label-dimmed-underline = ${BAR.background}
+
+;label-active =  %name%
+;label-active-foreground = #fff
+;label-active-background = #773f3f3f
+;label-active-underline = #c9665e
+;label-active-font = 4
+;label-active-padding = 4
+
+;label-occupied = 
+;label-occupied-foreground = #dd
+;label-occupied-underline = #666
+;label-occupied-font = 4
+;label-occupied-padding = 4
+
+;label-empty = 
+;label-empty-foreground = #55
+;label-empty-font = 4
+;label-empty-padding = 4
+
+workspace_icon-0 = code;
+workspace_icon-1 = explore;
+workspace_icon-2 = browse;
+workspace_icon-3 = write;
+workspace_icon-4 = listen;
+workspace_icon-5 = draw;
+workspace_icon-6 = play;
+
+;workspace_icon-x = opera;
+;workspace_icon-x = write;
+;workspace_icon-x = edit;
+
+label-active = %icon% %name%
+label-active-foreground = #fdf6e3
+label-active-background = #33e4a48a
+label-active-underline = #cb4b16
+label-active-padding = 2
+
+label-occupied = %icon% %name%
+label-occupied-foreground = #93a1a1
+label-occupied-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = #99586e75
+label-empty-padding = 2
+
+[module/title]
+type = custom/script
+exec = xtitle -s
+tail = true

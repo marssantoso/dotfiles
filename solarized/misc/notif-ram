@@ -1,0 +1,5 @@
+#! /bin/bash
+
+used=$(screenfetch | grep RAM | awk '{print $5}')
+twmnc -t RAM -c "$used / 2G"
+echo "$used / 2G"

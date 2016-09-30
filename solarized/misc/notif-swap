@@ -1,0 +1,3 @@
+#! /bin/bash
+
+swap=$(swapon --show | grep dev | awk '{print $4 "/" $3}') && twmnc -t SWAP -c $swap

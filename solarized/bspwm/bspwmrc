@@ -1,0 +1,44 @@
+#! /bin/sh
+
+sxhkd &
+
+bspc config border_width         1
+bspc config window_gap           5
+
+bspc config top_padding		28
+bspc config bottom_padding	28
+bspc config left_padding	 0
+bspc config right_padding	 0
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+
+bspc config normal_frame_opacity 0.0
+bspc config focused_frame_opacity 0.1
+
+bspc monitor -d code explore browse write listen draw play
+
+bspc rule -a Gimp desktop=^8 state=floating follow=on
+bspc rule -a mplayer state=floating
+bspc rule -a galculator state=floating
+
+bspc rule -a termite desktop=^1 focus=on
+bspc rule -a nemo desktop=^2 focus=on
+bspc rule -a chromium desktop=^3 focus=on state=floating
+bspc rule -a libreoffice desktop=^4 focus=on
+bspc rule -a spotify desktop=^5 focus=on
+bspc rule -a steam desktop=^6 focus=on
+
+# panel &
+# bar | lemonbar
+
+feh --bg-fill '/home/mars/Downloads/xorg.png'
+
+~/.config/panel/lemon
+~/.launcher/tapbutton
+
+xcompmgr -c -f -r-24 -o.95 &
+twmnd
