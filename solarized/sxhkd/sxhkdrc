@@ -209,10 +209,10 @@ XF86TouchpadToggle
 #     screenshot     #
 ######################
 
-# print area
+# print full
 Print
-	shutter -s
+	scrot
 
-# print full, window, last
-{alt,ctrl,shift} + Print
-	shutter -{f,a,r}
+# print select, window, window+border
+{shift,ctrl,alt} + Print
+	scrot -{s,u,b}
