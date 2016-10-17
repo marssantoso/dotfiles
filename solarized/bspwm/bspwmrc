@@ -11,7 +11,7 @@ bspc config left_padding	 0
 bspc config right_padding	 0
 
 bspc config split_ratio          0.50
-bspc config borderless_monocle   true
+bspc config borderless_monocle   false
 bspc config gapless_monocle      true
 bspc config focus_by_distance    true
 bspc config history_aware_focus  true
@@ -19,26 +19,49 @@ bspc config history_aware_focus  true
 bspc config normal_frame_opacity 0.0
 bspc config focused_frame_opacity 0.1
 
-bspc monitor -d code explore browse write listen draw play
+bspc monitor -d code explore browse write listen draw play chat download
 
-bspc rule -a Gimp desktop=^8 state=floating follow=on
-bspc rule -a mplayer state=floating
-bspc rule -a galculator state=floating
+#1 code desktop
+bspc rule -a Termite desktop=^1 focus=on state=tiled follow=on
+bspc rule -a Subl3 desktop=^1 focus=on state=tiled follow=on
 
-bspc rule -a termite desktop=^1 focus=on
-bspc rule -a nemo desktop=^2 focus=on
-bspc rule -a chromium desktop=^3 focus=on state=floating
-bspc rule -a libreoffice desktop=^4 focus=on
-bspc rule -a spotify desktop=^5 focus=on
-bspc rule -a steam desktop=^6 focus=on
+#2 explore desktop
+bspc rule -a Nemo desktop=^2 state=tiled follow=on
 
-# panel &
-# bar | lemonbar
+#3 browse desktop
+bspc rule -a chromium desktop=^3 focus=on state=tiled follow=on
+bspc rule -a Opera-developer desktop=^3 focus=on state=tiled follow=on
+bspc rule -a Firefox desktop=^3 focus=on state=tiled follow=on
 
-feh --bg-fill '/home/mars/Downloads/xorg.png'
+#4 write desktop
+bspc rule -a LibreOffice desktop=^4 focus=on state=tiled follow=on
+bspc rule -a QtCreator desktop=^4 focus=on state=tiled follow=on
+bspc rule -a Brackets desktop=^4 focus=on state=tiled follow=on
+
+#5 listen desktop
+bspc rule -a spotify desktop=^5 focus=on state=tiled follow=on
+bspc rule -a banshee desktop=^5 focus=on state=tiled follow=on
+
+#6 draw desktop
+bspc rule -a Gimp desktop=^6 focus=on state=tiled
+bspc rule -a krita desktop=^6 focus=on state=pseudo_tiled follow=on
+bspc rule -a Inkscape desktop=^6 state=tiled focus=on follow=on
+
+#7 play desktop
+bspc rule -a Steam desktop=^7 focus=on state=pseudo_tiled
+bspc rule -a steam-native desktop=^7 focus=on state=pseudo_tiled
+
+#8 misc desktop
+bspc rule -a MPlayer desktop=^8 state=fullscreen focus=on follow=on
+bspc rule -a Galculator desktop=^8 state=floating focus=on follow=on
+
+#9 download desktop
+bspc rule -a qBittorent desktop=^9 focus=on state=tiled
+
+feh --bg-fill '/home/mars/Pictures/open-wallpaper/distro-inspired/archlinux.png'
 
 ~/.config/panel/lemon
 ~/.launcher/tapbutton
 
-xcompmgr -c -f -r-24 -o.95 &
+xcompmgr -c -f -r-24 -o.90 &
 twmnd

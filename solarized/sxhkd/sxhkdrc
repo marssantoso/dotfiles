@@ -30,6 +30,10 @@ super + alt + c
 super + e
 	nemo
 
+# sublime text
+super + n
+	subl3
+
 # toggle windows
 super + d
     bspc control --toggle-visibility

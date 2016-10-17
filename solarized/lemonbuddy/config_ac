@@ -20,7 +20,6 @@ font-3 = FontAwesome:size=12;0
 font-4 = Unifont:size 14;0
 
 modules-left = menu
-;modules-right = volume wifi battery date
 modules-right = volume wifi date
 
 [bar/bottom]
@@ -90,29 +89,44 @@ menu-1-7-exec = menu_open-0
 menu-2-0 = Chromium
 menu-2-0-foreground = #ddfdf6e3
 menu-2-0-exec = chromium &
-menu-2-1 = QuteBrowser
+menu-2-1 = Opera
 menu-2-1-foreground = #ddfdf6e3
-menu-2-1-exec = qutebrowser &
-menu-2-2 = 
+menu-2-1-exec = opera-developer &
+menu-2-2 = Firefox
 menu-2-2-foreground = #ddfdf6e3
-menu-2-2-exec = menu_open-1
+menu-2-2-exec = firefox &
+menu-2-3 = QuteBrowser
+menu-2-3-foreground = #ddfdf6e3
+menu-2-3-exec = qutebrowser &
+menu-2-4 = 
+menu-2-4-foreground = #ddfdf6e3
+menu-2-4-exec = menu_open-1
 
-menu-3-0 = Sublime
+menu-3-0 = LibreOffice
 menu-3-0-foreground = #ddfdf6e3
-menu-3-0-exec = subl3
-menu-3-1 = LibreOffice
+menu-3-0-exec = libreoffice &
+menu-3-1 = Sublime
 menu-3-1-foreground = #ddfdf6e3
-menu-3-1-exec = libreoffice &
-menu-3-2 = 
+menu-3-1-exec = subl3
+menu-3-2 = Brakets
 menu-3-2-foreground = #ddfdf6e3
-menu-3-2-exec = menu_open-1
+menu-3-2-exec = brackets &
+menu-3-3 = QT Creator
+menu-3-3-foreground = #ddfdf6e3
+menu-3-3-exec = qtcreator &
+menu-3-4 = 
+menu-3-4-foreground = #ddfdf6e3
+menu-3-4-exec = menu_open-1
 
 menu-4-0 = Spotify
 menu-4-0-foreground = #ddfdf6e3
 menu-4-0-exec = spotify &
-menu-4-1 = 
+menu-4-1 = Banshee
 menu-4-1-foreground = #ddfdf6e3
-menu-4-1-exec = menu_open-1
+menu-4-1-exec = banshee &
+menu-4-2 = 
+menu-4-2-foreground = #ddfdf6e3
+menu-4-2-exec = menu_open-1
 
 menu-5-0 = GIMP
 menu-5-0-foreground = #ddfdf6e3
@@ -120,16 +134,25 @@ menu-5-0-exec = gimp &
 menu-5-1 = Inkscape
 menu-5-1-foreground = #ddfdf6e3
 menu-5-1-exec = inkscape &
-menu-5-2 = 
+menu-5-2 = Krita
 menu-5-2-foreground = #ddfdf6e3
-menu-5-2-exec = menu_open-1
+menu-5-2-exec = krita &
+menu-5-3 = 
+menu-5-3-foreground = #ddfdf6e3
+menu-5-3-exec = menu_open-1
 
 menu-6-0 = Steam
 menu-6-0-foreground = #ddfdf6e3
-menu-6-0-exec = steam &
-menu-6-1 = 
+menu-6-0-exec = steam-native &
+menu-6-1 = NES
 menu-6-1-foreground = #ddfdf6e3
-menu-6-1-exec = menu_open-1
+menu-6-1-exec = fceux &
+menu-6-2 = SNES
+menu-6-2-foreground = #ddfdf6e3
+menu-6-2-exec = zsnes &
+menu-6-3 = 
+menu-6-3-foreground = #ddfdf6e3
+menu-6-3-exec = menu_open-1
 
 menu-7-0 = Log Out
 menu-7-0-foreground = #dde4a48a
@@ -283,24 +306,6 @@ format = <label-state>
 
 label-dimmed-underline = ${BAR.background}
 
-;label-active =  %name%
-;label-active-foreground = #fff
-;label-active-background = #773f3f3f
-;label-active-underline = #c9665e
-;label-active-font = 4
-;label-active-padding = 4
-
-;label-occupied = 
-;label-occupied-foreground = #dd
-;label-occupied-underline = #666
-;label-occupied-font = 4
-;label-occupied-padding = 4
-
-;label-empty = 
-;label-empty-foreground = #55
-;label-empty-font = 4
-;label-empty-padding = 4
-
 workspace_icon-0 = code;
 workspace_icon-1 = explore;
 workspace_icon-2 = browse;
@@ -308,6 +313,8 @@ workspace_icon-3 = write;
 workspace_icon-4 = listen;
 workspace_icon-5 = draw;
 workspace_icon-6 = play;
+workspace_icon-7 = chat;
+workspace_icon-8 = download;
 
 label-active = %icon% %name%
 label-active-foreground = #fdf6e3
