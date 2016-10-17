@@ -1,0 +1,12 @@
+#! /bin/bash
+
+declare -i STATE
+STATE=`synclient -l | grep 'TouchpadOff' | awk '{print $3}'`
+if [ $STATE -eq 0 ]
+then
+	synclient TouchpadOff=1
+	echo "Touchpad Disabled"
+else
+	synclient TouchpadOff=0
+	echo "Touchpad Enabled"
+fi

@@ -1,0 +1,13 @@
+{
+  "name": "message",
+  "description": "nativeMessaging host",
+  "path": "/opt/lampp/htdocs/Web-Speech-API/app/message",
+  //"path": "/opt/lampp/htdocs/20161005/message",
+  //"path": "/opt/lampp/htdocs/Web-Speech-API/app/nativeMessage",
+  "type": "stdio",
+  "allowed_origins": [
+    //"chrome-extension://kaepflfojgnfiohojdglldncjbfnehee/"
+    //"chrome-extension://jbkdgmbndiglajedanjjeicnaigmcngn/"
+    "chrome-extension://ochmeefafogddhdcgbpoadmfgpoalene/"
+  ]
+}
