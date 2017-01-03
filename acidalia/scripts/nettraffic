@@ -1,0 +1,131 @@
+#!/bin/sh
+
+NAME="nettrafic"
+VERSION="0.2.7"
+GET="cat /proc/net/dev"
+LABEL=false
+
+while getopts i:a:u:s:t:U:D:lhv option
+do
+  case "${option}"
+  in
+    i)
+      IF=${OPTARG};;
+    a)
+      RT=${OPTARG};;
+    u)
+      UNIT=${OPTARG};;
+    s)
+      SEP=${OPTARG};;
+    t)
+      DLY=${OPTARG};;
+    l)
+      LABEL=true;;
+    U)
+      UPL=${OPTARG};;
+    D)
+      DNL=${OPTARG};;
+    h)
+      echo -e "Usage: nettraffic [OPTION]"
+      echo -e "Options:"
+      echo -e "  -i  (%ifname%)\t Specify which network interface to monitor. Required."
+      echo -e "  -a  (up|dn|down|total) Shows which data to display."
+      echo -e "  -u  (K|KB|M|MB)\t Units to show the data in."
+      echo -e "  -l  *no arguments*\t Choose whether or not to display the label (up or down)."
+      echo -e "  -s\t\t\t A separator to divide between up and down. Default is none."
+      echo -e "  -U\t\t\t The label for upstream data traffic."
+      echo -e "  -D\t\t\t The label for downstream data traffic."
+      echo -e "  -t\t\t\t Set the interval for the data update."
+      echo -e "  -v\t\t\t Display version number."
+      echo -e "  -h\t\\t\t Display this help."
+      echo "For full help, visit http://github.com/ma-santoso/nettrafic/"
+      exit;;
+    v)
+      echo "$NAME, version $VERSION";
+      exit;;
+    *)
+      exit;;
+  esac
+done
+
+if [[ "$IF" = "" ]]; then
+  echo "No interface specified"
+  exit
+fi
+
+if [[ "$LABEL" = true ]]; then
+  if [[ "$UPL" = "" ]]; then
+    UP="up"
+  else
+    UP=$UPL
+  fi
+  if [[ "$DNL" = "" ]]; then
+    DN="dn"
+  else
+    DN=$DNL
+  fi
+else
+  UP=""
+  DN=""
+fi
+
+if [[ "$UNIT" = "MB" || "$UNIT" = "M" ]]; then
+  FAC=1048576; SUF=" MB/s"
+elif [[ "$UNIT" = "KB" || "$UNIT" = "K" ]]; then
+  FAC=1024; SUF=" KB/s"
+elif [[ "$UNIT" = "B" || "$UNIT" = "" ]]; then
+  FAC=1; SUF=" B/s"
+fi
+
+if [[ "$DLY" = "" ]]; then
+  DLY=1;
+fi
+
+RN="0.0"
+TN="0.0"
+AN="0.0"
+
+while :
+do
+  if [[ "$RT" = "up" ]]; then
+    echo "$TN$SUF$UP"
+  elif [[ "$RT" = "down" || "$RT" = "dn" ]]; then
+    echo "$RN$SUF$DN"
+  elif [[ "$RT" = "total" ]]; then
+    echo "$AN$SUF"
+  else
+    if [[ "$SEP" = "" ]]; then
+      if [[ "$LABEL" = false ]]; then
+        echo "$RN$SUF $TN$SUF"
+      else
+        echo "$RN$SUF$DN $TN$SUF$UP"
+      fi
+    else
+      if [[ "$LABEL" = false ]]; then
+        echo "$RN$SUF $SEP $TN$SUF"
+      else
+        echo "$RN$SUF$DN $SEP $TN$SUF$UP"
+      fi
+    fi
+  fi
+
+  RX1=`$GET | grep $IF | awk '{print $2}'`; TX1=`$GET | grep $IF | awk '{print $10}'`
+  sleep $DLY
+  RX2=`$GET | grep $IF | awk '{print $2}'`; TX2=`$GET | grep $IF | awk '{print $10}'`
+
+  RX=($RX2-$RX1)/$DLY; TX=($TX2-$TX1)/$DLY; AX=$RX+$TX
+
+  if [[ "$UNIT" = "" ]]; then
+    if [[ "$RX" -ge 105472 || "$TX" -ge 105472 ]]; then
+      FAC=1048576; SUF=" MB/s"
+    elif [[ "$RX" -ge 103 || "$TX" -ge 103 ]]; then
+      FAC=1024; SUF=" KB/s"
+    else
+      FAC=1; SUF=" B/s"
+    fi
+  fi
+
+  RN=`calc $RX/$FAC | awk '{ x = sprintf("%.1f", $1); print x }'`
+  TN=`calc $TX/$FAC | awk '{ x = sprintf("%.1f", $1); print x }'`
+  AN=`calc $AX/$FAC | awk '{ x = sprintf("%.1f", $1); print x }'`
+done

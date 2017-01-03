@@ -1,0 +1,72 @@
+#! /bin/sh
+
+sxhkd &
+
+bspc config border_width         5
+bspc config window_gap           10
+
+bspc config top_padding		35
+bspc config bottom_padding	10
+bspc config left_padding	0
+bspc config right_padding	0
+
+bspc config split_ratio          0.50
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+bspc config click_to_focus	 	 true
+
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config paddingless_monocle   false
+
+bspc config normal_border_color '#838689'
+bspc config focused_border_color '#cad7b2'
+
+bspc monitor -d code explore browse write listen draw play chat download watch
+
+#1 code desktop
+bspc rule -a Subl3 desktop=^1 focus=on state=tiled follow=on
+
+#2 explore desktop
+bspc rule -a Nemo desktop=^2 follow=on
+
+#3 browse desktop
+bspc rule -a chromium desktop=^3 focus=on state=tiled follow=on
+bspc rule -a Opera-developer desktop=^3 focus=on state=tiled follow=on
+bspc rule -a Firefox desktop=^3 focus=on state=floating follow=on border=off
+
+#4 write desktop
+bspc rule -a LibreOffice desktop=^4 focus=on state=tiled follow=on
+bspc rule -a QtCreator desktop=^4 focus=on state=tiled follow=on
+bspc rule -a Brackets desktop=^4 focus=on state=tiled follow=on
+
+#5 listen desktop
+bspc rule -a spotify desktop=^5 focus=on state=tiled follow=on
+bspc rule -a banshee desktop=^5 focus=on state=tiled follow=on
+
+#6 draw desktop
+bspc rule -a Gimp desktop=^6 focus=on state=tiled
+bspc rule -a krita desktop=^6 focus=on state=tiled follow=on
+bspc rule -a Inkscape desktop=^6 state=tiled focus=on follow=on
+
+#7 play desktop
+bspc rule -a Steam:Steam desktop=^7 focus=on state=tiled split_dir=west split_ratio=0.8
+bspc rule -a Steam:Friends desktop=^7 state=tiled split_dir=east split_ratio=0.2
+
+#8 chat desktop
+
+#9 download desktop
+bspc rule -a qBittorent desktop=^9 focus=on state=tiled
+
+#10 watch desktop
+bspc rule -a MPlayer desktop=^10 state=fullscreen focus=on follow=on
+bspc rule -a mpv desktop=^10 state=fullscreen focus=on follow=on
+bspc rule -a feh desktop=^10 state=fullscreen follow=on focus=on
+
+#Misc startup
+feh --bg-fill '/home/mars/Pictures/dots.png'
+tapbutton &
+compton -b &
+monobar -a &
+lampp &
+mpd &

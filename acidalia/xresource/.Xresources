@@ -1,0 +1,66 @@
+#define color_0 = #5d4157
+#define color_1 = #838689
+#define color_2 = #a8caba
+#define color_3 = #cad7b2
+#define color_4 = #ebe3aa
+#define color_a = #706370
+#define color_b = #95a8a1
+#define color_c = #b9d0b5
+#define color_d = #daddad
+
+*background:            color_1
+*foreground:            color_4
+*cursorColor:           color_2
+*pointerColorBackground:color_0
+*pointerColorForeground:color_3
+
+*color0:                color_1
+*color1:                color_1
+*color2:                color_2
+*color3:                color_2
+*color4:                color_3
+*color5:                color_3
+*color6:                color_4
+*color7:                color_4
+*color8:                color_3
+*color9:                color_3
+*color10:               color_0
+*color11:               color_0
+*color12:               color_0
+*color13:               color_0
+*color14:               color_0
+*color15:               color_0
+
+
+! -------------------------------------------------------------------
+! ROFI Config
+! -------------------------------------------------------------------
+    rofi.modi: drun,run
+    rofi.font: Droid Sans 9
+    rofi.width: 755
+    rofi.bw: 0
+    rofi.lines: 10
+    rofi.columns: 2
+    rofi.opacity: 90
+    rofi.location: 1
+    rofi.padding: 50
+    rofi.fuzzy: true
+    rofi.xoffset: 75
+    rofi.yoffset: 25
+    rofi.line-margin: 10
+    rofi.hide-scrollbar: true
+    rofi.cycle: true
+    rofi.window-format: {w}		{n}		{t}
+    rofi.display-window: windows
+    rofi.sidebar-mode: true
+    rofi.separator-style: none
+
+! -------------------------------------------------------------------
+! ROFI Color theme
+! State:           	'bg',     	'fg',     'bgalt',    'hlbg',   'hlfg'
+! -------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #ffa8caba, #00000000, #00000000
+rofi.color-normal: #ffa8caba, #995d4157, #ffa8caba, #ffebe3aa, #995d4157
+rofi.color-active: #ff838689, #99cad7b2, #ff838689, #ffebe3aa, #995d4157
+rofi.color-urgent: #ff838689, #99cad7b2, #ff838689, #ffebe3aa, #995d4157

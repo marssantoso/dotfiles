@@ -1,0 +1,530 @@
+[colors]
+transparent = #00000000
+color-0 = #5d4157
+color-1 = #838689
+color-2 = #a8caba
+color-3 = #cad7b2
+color-4 = #ebe3aa
+color-a = #706370
+color-b = #95a8a1
+color-c = #b9d0b5
+color-d = #daddad
+
+[fonts]
+font-0 = OperatorMonoBook:size=10;0
+font-1 = MaterialDesignIcons:size=12;0
+font-2 = MaterialIcons:size=10;0
+font-3 = FontAwesome:size=12;0
+font-4 = Unifont:size 14;0
+
+;_________________________________________
+;*****************************************
+
+[bar/top]
+monitor = ${env:MONITOR:LVDS1}
+bottom = false
+override-redirect = true
+font-0 = ${fonts.font-0}
+font-1 = ${fonts.font-1}
+font-2 = ${fonts.font-2}
+font-3 = ${fonts.font-3}
+font-4 = ${fonts.font-4}
+background = ${colors.transparent}
+foreground = ${colors.color-0}
+
+[bar/topline]
+inherit = bar/top
+height = 5
+background = ${colors.color-0}
+modules-right = line
+
+[bar/topbg]
+monitor = ${env:MONITOR:LVDS1}
+height = 28
+border-top = 5
+border-top-color = ${colors.color-0}
+font-0 = ${fonts.font-0}
+modules-center = line
+
+;bg cpu ram
+[bar/topbg0]
+inherit = bar/topbg
+width = 145
+offset-x = 1130
+background = ${colors.color-4}
+
+;bg vol bl
+[bar/topbg1]
+inherit = bar/topbg
+width = 135
+offset-x = 990
+background = ${colors.color-d}
+
+;bg net
+[bar/topbg2]
+inherit = bar/topbg
+width = 150
+offset-x = 835
+background = ${colors.color-3}
+
+;bg title
+[bar/topbg3]
+inherit = bar/topbg
+width = 500
+height = 15
+offset-x = 330
+background = ${colors.color-c}
+
+;bg label
+[bar/topbg4]
+inherit = bar/topbg
+width = 80
+height = 15
+offset-x = 245
+background = ${colors.color-c}
+
+;bg node
+[bar/topbg5]
+inherit = bar/topbg
+width = 70
+height = 15
+offset-x = 170
+background = ${colors.color-3}
+
+;bg menu
+[bar/topbg6]
+inherit = bar/topbg
+width = 90
+height = 15
+offset-x = 75
+background = ${colors.color-d}
+
+;bg time date
+[bar/topbg7]
+inherit = bar/topbg
+width = 65
+height = 28
+offset-x = 5
+background = ${colors.color-4}
+
+;bg mpd
+[bar/topbg8]
+inherit = bar/topbg
+width = 500
+height = 28
+offset-x = 330
+background = ${colors.color-c}
+
+;_________________________________________
+;*****************************************
+
+[bar/toptime]
+inherit = bar/top
+width = 65
+height = 14
+offset-x = 5
+border-top = 5
+modules-center = time
+
+[bar/topdate]
+inherit = bar/top
+width = 65
+height = 16
+offset-x = 5
+offset-y = 17
+font-0 = OperatorMonoBook:size=8;0
+modules-center = date
+
+[bar/toprofi]
+inherit = bar/top
+width = 145
+height = 15
+font-0 = ${fonts.font-1}
+border-left = 75
+border-top = 5
+padding-left = 1
+modules-left = power windows rofi
+
+[bar/topmenu]
+inherit = bar/top
+width = 165
+height = 15
+background = ${colors.transparent}
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+border-top = 5
+border-left = 75
+modules-center = menu
+
+[bar/toplabel]
+inherit = bar/top
+width = 80
+height = 20
+offset-x = 245
+font-0 = OperatorMonoBook:size=8;0
+border-top = 1
+modules-center = ws-label
+
+[bar/topnode]
+inherit = bar/top
+width = 240
+height = 15
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+border-top = 5
+border-left = 170
+modules-center = close tile float
+
+[bar/toptitle]
+inherit = bar/top
+width = 500
+height = 20
+offset-x = 330
+font-0 = OperatorMonoBook:size=8;0
+border-top = 1
+modules-center = title
+
+[bar/mpdtop]
+inherit = bar/top
+width = 825
+height = 20
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+border-top = 1
+border-left = 335
+modules-left = mpdtoggle
+modules-center = mpdtitle
+modules-right = mpdtime
+
+[bar/mpdbottom]
+inherit = bar/top
+width = 825
+height = 15
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+offset-y = 18
+border-left = 335
+modules-left = mpdleft
+modules-center = mpdline
+modules-right = mpdright
+
+[bar/topright]
+inherit = bar/top
+height = 15
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+
+[bar/topcpu]
+inherit = bar/topright
+border-top = 5
+border-left = 1135
+modules-left = cpu
+
+[bar/topram]
+inherit = bar/topright
+offset-y = 18
+border-left = 1135
+modules-left = ram
+
+[bar/topvol]
+inherit = bar/topright
+border-top = 5
+border-left = 995
+modules-left = volume
+
+[bar/topxbl]
+inherit = bar/topright
+offset-y = 18
+border-left = 995
+modules-left = light
+
+[bar/topwifi]
+inherit = bar/topright
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+width = 995
+border-top = 5
+border-left = 825
+modules-center = wifi
+
+[bar/topnet]
+inherit = bar/topright
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+width = 995
+offset-y = 18
+border-left = 825
+modules-center = net
+
+;_________________________________________
+;*****************************************
+
+[bar/bottom]
+monitor = ${env:MONITOR:LVDS1}
+bottom = true
+width = 350
+height = 24
+font-0 = ${fonts.font-0}
+font-1 = ${fonts.font-1}
+font-2 = ${fonts.font-2}
+modules-left = workspace ws-label
+
+[bar/bottomline]
+monitor = ${env:MONITOR:LVDS1}
+bottom = true
+height = 10
+background = ${colors.transparent}
+font-0 = OperatorMonoBook:pixelsize=5;0
+font-1 = MaterialDesignIcons:size=0;0
+modules-center = ws-bar
+underline-size = 5
+
+;_________________________________________
+;*****************************************
+
+[module/line]
+type = custom/text
+content = " "
+
+[module/time]
+type = internal/date
+time = %H:%M
+time-alt = %H:%M:%S
+label = %time%
+
+[module/date]
+type = internal/date
+date = %Y%m%d
+date-alt = %A
+label = %date%
+
+[module/menu]
+type = custom/menu
+label-open =  MENU
+label-close = 
+label-separator =
+menu-0-0 = 
+menu-0-0-exec = rofipower
+menu-0-1 = 
+menu-0-1-exec = rofi -show window -lines 10 -columns 1 -font "Droid Sans Mono 9" -color-window "#ffcad7b2, #00000000, #00000000" -color-normal "#ffcad7b2, #995d4157, #ffcad7b2, #ffebe3aa, #995d4157"
+menu-0-2 = 
+menu-0-2-exec = rofi -show drun
+
+[module/close]
+type = custom/text
+content = 
+click-left = bspc node -c
+click-middle = bspc node -k
+
+[module/tile]
+type = custom/text
+content = 
+click-left = bspc node -t tiled
+click-right = bspc node -t fullscreen
+
+[module/float]
+type = custom/text
+content = 
+click-left = bspc node -t floating
+click-right = bspc node -t pseudo_tiled
+
+[module/ws-label]
+type = internal/bspwm
+format = <label-state>
+label-focused = %name%
+label-occupied = 
+label-empty = 
+label-focused-padding = 5
+label-occupied-padding = 5
+label-empty-padding = 5
+
+[module/title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 75
+format-padding = 5
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+font-0 = OperatorMonoBook:size=8;0
+font-1 = MaterialDesignIcons:size=10;0
+toggle-on-foreground = ${colors.color-0}
+toggle-off-foreground = ${colors.color-1}
+
+[module/mpdtoggle]
+inherit = module/mpd
+format-online = <icon-repeat> <icon-repeatone> <icon-random>
+icon-repeat = 
+icon-repeatone = 
+icon-random = 
+
+[module/mpdtime]
+inherit = module/mpd
+format-online = <label-time>
+label-time = %elapsed%/%total%
+
+[module/mpdleft]
+inherit = module/mpd
+format-online = <icon-prev> <icon-seekb> <icon-stop>
+icon-prev = 
+icon-seekb = 
+icon-stop = 
+
+[module/mpdright]
+inherit = module/mpd
+format-online = <toggle> <icon-seekf> <icon-next>
+icon-play = 
+icon-pause = 
+icon-seekf = 
+icon-next = 
+
+[module/mpdtitle]
+inherit = module/mpd
+format-online = <label-song>
+format-offline = <label-offline>
+label-song = np: %artist% - %title%
+label-offline = mpd is offline
+label-song-maxlen = 55
+
+[module/mpdline]
+inherit = module/mpd
+format-online = <bar-progress>
+bar-progress-width = 45
+bar-progress-indicator = ╼
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+format-connected = <label-connected>
+label-connected = connected  %essid%
+label-disconnected = disconnected  %ifname%
+label-disconnected-foreground = ${colors.color-1}
+
+[module/net]
+type = custom/script
+exec = nettraffic -i wlp2s0 -l -U  -D 
+tail = true
+interval = 1
+format = <label>
+label = %output%
+
+[module/volume]
+type = internal/volume
+format-volume = <bar-volume> <ramp-volume> <label-volume>
+label-volume = %percentage%
+label-muted = ╍╍╍╍╍╍╍╍╍╍ muted
+label-volume-foreground = ${colors.color-0}
+label-muted-foreground = ${colors.color-1}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.color-0}
+bar-volume-width = 10
+bar-volume-indicator = ╍
+bar-volume-fill = ╍
+bar-volume-empty = ╍
+bar-volume-foreground-0 = ${colors.color-1}
+bar-volume-indicator-foreground = ${colors.color-0}
+bar-volume-empty-foreground = ${colors.color-1}
+
+[module/light]
+type = internal/xbacklight
+format = <bar> <ramp> <label>
+label = %percentage%
+label-foreground = ${colors.color-0}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-foreground = ${colors.color-0}
+bar-width = 10
+bar-indicator = ╍
+bar-fill = ╍
+bar-empty = ╍
+bar-foreground-0 = ${colors.color-1}
+bar-indicator-foreground = ${colors.color-0}
+bar-empty-foreground = ${colors.color-1}
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <bar-load> <label>
+label = CPU %percentage%
+label-foreground = ${colors.color-0}
+bar-load-width = 10
+bar-load-indicator = ╍
+bar-load-fill = ╍
+bar-load-empty = ╍
+bar-load-foreground-0 = ${colors.color-1}
+bar-load-indicator-foreground = ${colors.color-0}
+bar-load-empty-foreground = ${colors.color-1}
+
+[module/ram]
+type = internal/memory
+interval = 0.5
+format = <bar-used> <label>
+label = RAM %percentage_used%
+label-foreground = ${colors.color-0}
+bar-used-width = 10
+bar-used-indicator = ╍
+bar-used-fill = ╍
+bar-used-empty = ╍
+bar-used-foreground-0 = ${colors.color-1}
+bar-used-indicator-foreground = ${colors.color-0}
+bar-used-empty-foreground = ${colors.color-1}
+
+;_________________________________________
+;*****************************************
+
+[module/ws-bar]
+type = internal/bspwm
+pin-workspaces = true
+format = <label-state>
+ws-icon-0 = code;
+ws-icon-1 = explore;
+ws-icon-2 = browse;
+ws-icon-3 = write;
+ws-icon-4 = listen;
+ws-icon-5 = draw;
+ws-icon-6 = play;
+ws-icon-7 = chat;
+ws-icon-8 = download;
+ws-icon-9 = watch;
+label-focused = %icon%
+label-occupied = %icon%
+label-empty = %icon%
+label-focused-padding = 5
+label-occupied-padding = 5
+label-empty-padding = 5
+label-focused-background = ${colors.color-1}
+label-occupied-background = ${colors.color-4}
+label-empty-background = ${colors.color-2}
+label-focused-underline = ${colors.transparent}
+label-occupied-underline = ${colors.transparent}
+label-empty-underline = ${colors.transparent}
+
+;_________________________________________
+;*****************************************
+
+[module/rofi]
+type = custom/text
+content = 
+font-0 = ${fonts.font-1}
+click-left = rofi -show drun
+
+[module/windows]
+inherit = module/rofi
+content = 
+click-left = rofi -show window -lines 10 -columns 1 -font "Droid Sans Mono 9"
+
+[module/power]
+inherit = module/rofi
+content = 
+click-left = rofipower

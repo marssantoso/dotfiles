@@ -1,0 +1,53 @@
+# Basic
+ncmpcpp_directory = ~/.config/ncmpcpp
+lyrics_directory = ~/.lyrics
+mpd_host = localhost
+mpd_port = 6600
+mpd_music_dir = "/run/media/mars/International Disk/MUSIC/"
+playlist_disable_highlight_delay = 3
+message_delay_time = 1
+
+# Visualizer
+visualizer_fifo_path = /tmp/mpd.fifo
+visualizer_output_name = fifo
+visualizer_in_stereo = no
+visualizer_sync_interval = 30
+visualizer_type = "spectrum" (wave/spectrum)
+visualizer_look = ●▋
+visualizer_color = black, red, green, yellow, blue, magenta, cyan, white
+
+# Song Format
+song_list_format = "{$8 %a $1-$9$6 %t $9}|{$8%f $9}$4$R$9{$4%b $9}{$2[ %l ]$9} "
+song_status_format = {%a - }{%t }|{%f }
+song_window_title_format = {%a - }{%t }|{%f - }{(%l)}
+song_columns_list_format = "(4f)[white]{nrE:#} (25)[cyan]{a} (35)[magenta]{t|f:Title} (30)[yellow]{b} (6f)[green]{yr:Year} (7f)[red]{lr}"
+
+# Interface
+progressbar_look = ─╼─
+user_interface = classic
+header_visibility = no
+titles_visibility = no
+header_text_scrolling = yes
+cyclic_scrolling = yes
+mouse_list_scroll_whole_page = no
+lines_scrolled = 1
+startup_slave_screen = clock
+screen_switcher_mode = playlist, media_library
+display_bitrate = yes
+
+# Colors
+# header_window_color = 
+# volume_color = 
+# state_line_color = 
+# state_flags_color = 
+# main_window_color = 
+# progressbar_color = 
+# progressbar_elapsed_color = 
+# statusbar_color = 
+
+
+# Lyric
+follow_now_playing_lyrics = yes
+fetch_lyrics_for_current_song_in_background = yes
+store_lyrics_in_song_dir = yes
+

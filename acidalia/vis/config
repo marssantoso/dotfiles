@@ -1,0 +1,15 @@
+visualizer.fps=30
+audio.sources=mpd
+mpd.fifo.path=/tmp/mpd.fifo
+audio.stereo.enabled=true
+visualizer.rotation.secs=0
+visualizers=spectrum,ellipse,lorenz
+visualizer.spectrum.character=▄
+visualizer.spectrum.bar.width=3
+visualizer.spectrum.bar.spacing=1
+visualizer.spectrum.smoothing.mode=sgs
+visualizer.spectrum.falloff.mode=fill
+visualizer.spectrum.falloff.weight=1
+visualizer.sgs.smoothing.points=2
+visualizer.sgs.smoothing.passes=2
+colors.scheme=basic_colors

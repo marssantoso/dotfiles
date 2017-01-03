@@ -1,0 +1,237 @@
+##################################
+#     wm independent hotkeys     #
+##################################
+
+# program launcher
+XF86Launch1
+	rofi -show drun
+
+super + space
+	rofi -show run
+
+# terminal
+super + Return
+	termite
+
+# reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# file manager
+super + e
+	nemo
+
+# sublime text
+super + n
+	subl3
+
+# toggle windows
+super + d
+    bspc control --toggle-visibility
+
+# restart lemon
+super + F5
+	~/.config/panel/lemon
+
+########################
+#     bspwm hotkeys    #
+########################
+
+# quit bspwm normally
+super + alt + Escape
+	bspc quit
+
+# close and kill
+alt + {_,shift + }F4
+	bspc node -{c,k}
+
+# if the current node is automatic, send it to the last manual, otherwise pull the last leaf
+super + y
+	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# balance tree
+super + shift + b
+	bspc desktop -B
+
+#######################
+#     state/flags     #
+#######################
+
+# toggle monocle and tiled
+super + shift + F5
+	bspc desktop -l next
+
+
+# set the window state
+super + shift + {F1,F2,F3,F4}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {F1,F2,F3}}
+	bspc node -g {locked,sticky,private}
+
+######################
+#     focus/swap     #
+######################
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node
+super + {_,shift + }Tab
+	bspc node -f {next,prev}
+
+# focus the next/previous desktop
+ctrl + {XF86Back,XF86Forward}
+	bspc desktop -f {prev,next}
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#####################
+#     preselect     #
+#####################
+
+# preselect the direction
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + Escape
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + Escape
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#################################
+#     resize tiled/floating     #
+#################################
+
+# expand the tiled space in the given direction
+super + alt + {Left,Down,Up,Right}
+	bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+# contract the tiled space in the given direction
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	xdo move {-x -20,-y +20,-y -20,-x +20}
+
+#####################################
+#     pointer focus/move/resize     #
+#####################################
+
+# focus
+# ~button1
+#	bspc pointer -g focus
+
+# start move/resize
+# super + button{1-3}
+#	; bspc pointer -g {move,resize_side,resize_corner}
+
+# end move/resize
+# super + @button{1-3}
+#	bspc pointer -u
+
+#########################
+#     media buttons     #
+#########################
+
+# play/pause
+XF86AudioPlay
+	playerctl play-pause
+
+# stop
+XF86AudioStop
+	playerctl stop
+
+# next
+XF86AudioNext
+	playerctl next
+
+# prev
+XF86AudioPrev
+	playerctl previous
+
+# volume up
+XF86AudioRaiseVolume
+	amixer -c 0 sset Master 1+
+
+# volume down
+XF86AudioLowerVolume
+	amixer -c 0 sset Master 1-
+
+# mute/unmute
+XF86AudioMute
+	amixer -c 0 sset Master toggle
+
+# touchpad toggle
+XF86TouchpadToggle
+	.config/sxhkd/tp_toggle
+
+######################
+#     screenshot     #
+######################
+
+# print full
+Print
+	scrot
+
+# print select, window, window+border
+{shift,ctrl,alt} + Print
+	scrot -{s,u,b}
+
+# record full desktop
+super + ctrl + Print
+	recordmydesktop --no-sound --no-frame --fps 60 --no-wm-check
+
+#####################
+#      polybar      #
+#####################
+
+# display/kill all bars
+super + ctrl + alt + {a,z}
+	monobar -{a,K}
+
+# display a single info bar
+super + ctrl + {m,v,c,z}
+	monobar -{s,w,n,t} -I 2
+
+# display a single control bar
+super + ctrl + {space,n,b,x}
+	monobar -{b,c,i,m} -I 3
+
+# display mpd bar
+super + ctrl + alt + space
+	monobar -p -I 4
+
+# display all bar with mpd
+super + ctrl + shift + space
+	monobar -Kbscipnmt

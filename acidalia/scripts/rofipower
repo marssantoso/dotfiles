@@ -1,0 +1,32 @@
+#!/bin/sh
+
+POWER="\tLog Out\n\tPower Off\n\tReboot\n\tSleep\n\tHibernate"
+ROFI=`echo -e $POWER | rofi -dmenu -lines 1 -columns 5 -p power: -color-window '#ffebe3aa, #00000000, #00000000' -color-normal '#ffebe3aa, #995d4157, #ffebe3aa, #ffcad7b2, #995d4157' | awk '{print $1}'`
+
+if [ ${#ROFI} -gt 0 ]
+then
+    case $ROFI in
+    Log)
+        MESG="Quitting BSPWM..."
+        CMD="bspc quit"
+        ;;
+    Power)
+        MESG="Powering off..."
+        CMD="poweroff"
+        ;;
+    Reboot)
+        MESG="Rebooting..."
+        CMD="reboot"
+        ;;
+    Suspend)
+        MESG="Entering sleep mode..."
+        CMD="systemctl suspend"
+        ;;
+    Hibernate)
+        MESG="Hibernating..."
+        CMD="systemctl hibernate"
+        ;;
+    esac
+fi
+
+twmnc -c "$MESG" && sleep 3 && $CMD

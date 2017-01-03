@@ -1,0 +1,212 @@
+#!/bin/sh
+
+PROC=`pgrep polybar`
+KILL='pkill polybar'
+NULL=`cat /dev/null`
+N=0
+
+BG0='polybar topbg0'
+BG1='polybar topbg1'
+BG2='polybar topbg2'
+BG3='polybar topbg3'
+BG4='polybar topbg4'
+BG5='polybar topbg5'
+BG6='polybar topbg6'
+BG7='polybar topbg7'
+BG8='polybar topbg8'
+
+BOTTOM='polybar bottomline'
+CPU='polybar topcpu'
+VOL='polybar topvol'
+INET='polybar topwifi'
+WINDOW='polybar toptitle'
+LABEL='polybar toplabel'
+NODE='polybar topnode'
+MENU='polybar topmenu'
+TIME='polybar toptime'
+RAM='polybar topram'
+XBL='polybar topxbl'
+STAT='polybar topnet'
+DATE='polybar topdate'
+MPDTOP='polybar mpdtop'
+MPDBOTTOM='polybar mpdbottom'
+
+PADDING_TOP0='bspc config top_padding 0'
+PADDING_TOP1='bspc config top_padding 15'
+PADDING_TOP2='bspc config top_padding 35'
+PADDING_BOTTOM0='bspc config bottom_padding 0'
+PADDING_BOTTOM1='bspc config bottom_padding 10'
+
+function fullbar {
+  N=0
+  $KILL
+  $BG0 &
+  $BG1 &
+  $BG2 &
+  $BG3 &
+  $BG4 &
+  $BG5 &
+  $BG6 &
+  $BG7 &
+  $BOTTOM &
+  sleep .125
+  $CPU &
+  sleep .125
+  $VOL &
+  sleep .125
+  $INET &
+  sleep .125
+  $WINDOW &
+  sleep .125
+  $LABEL &
+  sleep .125
+  $NODE &
+  sleep .125
+  $MENU &
+  sleep .125
+  $TIME &
+  sleep .125
+  $RAM &
+  sleep .125
+  $XBL &
+  sleep .125
+  $STAT &
+  sleep .125
+  $DATE &
+  $PADDING_TOP2
+  $PADDING_BOTTOM1
+}
+
+function stat {
+  N=4
+  $BG0 &
+  sleep .125
+  $CPU &
+  sleep .125
+  $RAM &
+}
+
+function ctrl {
+  N=4
+  $BG1 &
+  sleep .125
+  $VOL &
+  sleep .125
+  $XBL &
+}
+
+function internet {
+  N=4
+  $BG2 &
+  sleep .125
+  $INET &
+  sleep .125
+  $STAT &
+}
+
+function window {
+  N=3
+  $BG3 &
+  sleep .125
+  $WINDOW &
+}
+
+function mpd {
+  N=4
+  $BG8 &
+  sleep .125
+  $MPDTOP &
+  sleep .125
+  $MPDBOTTOM &
+}
+
+function node {
+  N=6
+  $BG4 &
+  $BG5 &
+  sleep .125
+  $LABEL &
+  sleep .125
+  $NODE &
+}
+
+function menu {
+  N=3
+  $BG6 &
+  sleep .125
+  $MENU &
+}
+
+function now {
+  N=4
+  $BG7 &
+  sleep .125
+  $TIME &
+  sleep .125
+  $DATE &
+}
+
+function isempty {
+  if [[ "$PROC" = "$NULL" ]]; then
+    $PADDING_BOTTOM0
+    $PADDING_TOP0
+  fi
+}
+
+function terminate {
+  if [[ "$N" -ne 0 ]]; then
+    while [[ "$N" -ge 0 ]]; do
+      $KILL -n
+      let "N--"
+    done
+  else
+    $KILL
+  fi
+  isempty
+}
+
+while getopts absciwpmntKI: opts
+do
+  if [[ "$opts" == w || "$opts" == n || "$opts" == m ]]; then
+    $PADDING_TOP1
+  elif [[ "$opts" == s || "$opts" == c || "$opts" == i || "$opts" == p || "$opts" == t ]]; then
+    $PADDING_TOP2
+  fi
+
+  case "$opts"
+  in
+    a)
+      fullbar;;
+    b)
+      $BOTTOM &
+      $PADDING_BOTTOM1;;
+    s)
+      stat;;
+    c)
+      ctrl;;
+    i)
+      internet;;
+    w)
+      window;;
+    p)
+      mpd;;
+    n)
+      node;;
+    m)
+      menu;;
+    t)
+      now;;
+    K)
+      N=0
+      terminate;;
+    I)
+      INTV=${OPTARG};;
+    *)
+      exit;;
+  esac
+done
+
+if [[ "$INTV" != "$NULL" ]]; then
+  sleep $INTV
+  terminate
+fi

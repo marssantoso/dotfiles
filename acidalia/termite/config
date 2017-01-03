@@ -1,0 +1,42 @@
+[options]
+#font = Operator Mono Light 8
+#font = Operator Mono Book 8
+#font = Fira Code Light 8
+font = Fira Code 8
+#font = Roboto Mono Thin 8
+#font = Roboto Mono Light 8
+#font = DejaVu Sans Mono 8
+#font = Droid Sans Mono 8
+
+[colors]
+# color-0 = #5d4157
+# color-1 = #838689
+# color-2 = #a8caba
+# color-3 = #cad7b2
+# color-4 = #ebe3aa
+# color-a = #706370
+# color-b = #95a8a1
+# color-c = #b9d0b5
+# color-d = #daddad
+
+foreground      = #cad7b2
+foreground_bold = #ebe3aa
+cursor          = #cad7b2
+background      = rgba(93, 65, 87, 0.90)
+
+color0 =  #706370
+color1 =  #838689
+color2 =  #95a8a1
+color3 =  #a8caba
+color4 =  #b9d0b5
+color5 =  #cad7b2
+color6 =  #daddad
+color7 =  #ebe3aa
+color8 =  #706370
+color9 =  #838689
+color10 = #95a8a1
+color11 = #a8caba
+color12 = #b9d0b5
+color13 = #cad7b2
+color14 = #daddad
+color15 = #ebe3aa
